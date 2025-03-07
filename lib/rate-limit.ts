@@ -1,4 +1,4 @@
-// In-memory rate limiting implementation
+// In-memory rate limiting implementation. TODO: Replace with Redis (upstash)
 const rateLimitStore = new Map<string, number[]>();
 
 const WINDOW_SIZE = 60 * 60; // 1 hour in seconds

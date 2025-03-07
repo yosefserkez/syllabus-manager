@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { stripe, STRIPE_WEBHOOK_SECRET } from '@/lib/stripe';
 import Stripe from 'stripe';
@@ -46,7 +46,13 @@ export async function POST(request: Request) {
       STRIPE_WEBHOOK_SECRET
     );
 
-    const supabase = createRouteHandlerClient({ cookies });
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: cookies()
+      }
+    );
 
     switch (event.type) {
       case 'customer.subscription.created':

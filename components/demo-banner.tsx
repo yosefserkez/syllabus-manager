@@ -11,7 +11,7 @@ export function DemoBanner() {
     <Alert className="rounded-none border-x-0 border-t-0">
       <AlertDescription className="flex items-center justify-between">
         <span>
-          You're viewing a demo version. Create an account to unlock all features.
+          You&apos;re viewing a demo version. Create an account to unlock all features.
         </span>
         <Button variant="outline" onClick={() => router.push("/auth")}>
           Sign Up Now
